@@ -1,0 +1,12 @@
+{
+    "name": "bruger/florist",
+    "description": "Flowershop - Sample application",
+    "type": "library",
+    "license": "CC-BY-NC-4.0",
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit --colors tests"
+    }
+}
