@@ -9,7 +9,7 @@ class Plant extends DB
     private static int $plants = 0;
 
     /**
-     * The total number of towns is saved in a private property.
+     * The total number of plants is saved in a private property.
      * By making it static, the calculation will be made only once
      */
     public function __construct()
