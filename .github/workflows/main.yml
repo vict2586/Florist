@@ -8,6 +8,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Create test database
+      run: |
+        sudo /etc/init.d/mysql start
+        mysql -uroot -proot -hlocalhost < ./db/florist.sql
+
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
 
