@@ -28,11 +28,10 @@ function showArrayAsTable($array) {
 ?>
 
 <div class="img-text-flex">
-    <img class="small" src="AdobeStock_55807979_thumb.jpeg" alt="bike chain">
+    <img class="small" src="img/appletree.webp" alt="bike chain">
     <div>
-        <h2>Our Inventory of Used Bicycles</h2>
-        <p>Choose the bike you love.</p>
-        <p>We will deliver to your door and let you try it before you buy it.</p>
+        <h2>Our current inventory</h2>
+        <p>Welcome to Blossom's Flowers, the premier flower shop for all of your plant needs! Our passion for greenery is evident in every arrangement we create. From stunning succulents to lush foliage, we have everything you need to add a touch of nature to your home, office, or special event.</p>
     </div>
 </div>
 
