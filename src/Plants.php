@@ -7,6 +7,7 @@ require_once 'DB.php';
 class Plant extends DB 
 {
     private static int $plants = 0;
+    private static int $plants_family = 0;
 
     /**
      * The total number of plants is saved in a private property.
@@ -24,15 +25,35 @@ class Plant extends DB
             $stmt->execute();
             static::$plants = $stmt->fetch()['total'];
         }
+
+        if (static::$plants_family === 0) {
+            $sql =<<<'SQL'
+                SELECT COUNT(*) AS total
+                FROM plants_family;
+            SQL;
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute();
+            static::$plants_family = $stmt->fetch()['total'];
+        }
     }
 
-    public function getRandomPlant(): array
+    public function getAllPlant(): array
     {
-        $randomTown = mt_rand(0, (static::$plants - 1));
         $sql =<<<SQL
-            SELECT name AS name
-            FROM plants
-            LIMIT $randomTown, 1;
+            SELECT `name`, `latin_name`, `price_DKK`, `min_hight_cm`, `max_hight_cm`, `color`, `season` 
+            FROM plants;
+        SQL;
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetch();
+    }
+
+    public function getAllFamily(): array
+    {
+        $sql =<<<SQL
+            SELECT `name` 
+            FROM plants_family;
         SQL;
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
@@ -41,5 +62,5 @@ class Plant extends DB
     }
 }
 
-//$fakeplant = new Plant;
-//print_r($fakeplant->getRandomPlant());
+//$printPlants = new Plant;
+//print_r($printPlants->getAllPlant());

@@ -1,6 +1,7 @@
 <?php
 
-require_once '../info/Info.php';
+require_once '../Florist/info/info.php';
+//require_once '../info/info.php';
 
 class DB {    
     protected object $pdo;
