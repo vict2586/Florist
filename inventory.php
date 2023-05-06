@@ -3,44 +3,51 @@
     require_once __DIR__.'/comp_header.php';
 ?> <?php
 
-$allPlant = new allPlant;
-$allPlant->getPlant();
+$printPlants = new allPlant;
+$printPlants->getPlant();
 
-$arrayOfPlants = $allPlant->plant;
+//print_r($printPlants->getPlant());
+//var_dump($printPlants->getPlant());
 
-function showArrayAsTable($arrayOfPlants) {
-    echo "<table class='inventory'><tr><th>Name</th><th>Latin Name</th><th>Family</th><th>Price in DKK</th><th>Color</th><th>Season</th><th>Min height in cm</th><th>Max height in cm</th></tr>";
+function showArrayAsTable($printPlants) {
+    echo "<table class='inventory'>
+        <tr>
+            <th>Name</th>
+            <th>Latin Name</th>
+            <th>Family</th>
+            <th>Price in DKK</th>
+            <th>Color</th>
+            <th>Season</th>
+            <th>Min height in cm</th>
+            <th>Max height in cm</th>
+        </tr>";
 
-    var_dump($arrayOfPlants);
-
-/*     for ($i = 0; $i < sizeof($arrayOfPlants); $i++ ){
-        $plants = new allPlant([
-            'name' => $arrayOfPlants[$i]['name'],
-            'latin_name' => $arrayOfPlants[$i]['latin_name'],
-            'family' => $arrayOfPlants[$i]['family'],
-            'price_DKK' => $arrayOfPlants[$i]['price_DKK'],
-            'color' => $arrayOfPlants[$i]['color'],
-            'season' => $arrayOfPlants[$i]['season'],
-            'min_hight_cm' => $arrayOfPlants[$i]['min_hight_cm'],
-            'max_hight_cm' => $arrayOfPlants[$i]['max_hight_cm']
-        ]);
-        echo $plants->__toString();
-    } 
-*/
-
-    if (is_array($arrayOfPlants) || is_object($arrayOfPlants)) {
-
-        foreach($arrayOfPlants as $arrayOfPlantss) {
-            $name = $arrayOfPlantss['name'];
-            $latin_name = $arrayOfPlantss['latin_name'];
-            $family = $arrayOfPlantss['family'];
-            $price_in_DKK = $arrayOfPlantss['price_DKK'];       
-            $color = $arrayOfPlantss['color'];        
-            $season = $arrayOfPlantss['season'];       
-            $min_height_in_cm = $arrayOfPlantss['min_hight_cm'];        
-            $max_height_in_cm = $arrayOfPlantss['max_hight_cm'];
-        }    
+    if (is_array($printPlants) || is_object($printPlants)) {
+     
+        foreach($printPlants as $arrayOfPlants) { 
+            $name = $arrayOfPlants['name'];
+            $latin_name = $arrayOfPlants['latin_name'];
+            $family = $arrayOfPlants['family'];
+            $price_in_DKK = $arrayOfPlants['price_DKK'];       
+            $color = $arrayOfPlants['color'];        
+            $season = $arrayOfPlants['season'];       
+            $min_height_in_cm = $arrayOfPlants['min_hight_cm'];        
+            $max_height_in_cm = $arrayOfPlants['max_hight_cm'];
+        }
+        
     }
+
+    echo "<tr>
+            <td>$name</td>
+            <td>$latin_name</td>
+            <td>$family</td>
+            <td>$price_in_DKK</td>
+            <td>$color</td>
+            <td>$season</td>
+            <td>$min_height_in_cm</td>
+            <td>$max_height_in_cm</td>
+        </tr>";
+
     echo "</table>";
 }
 ?>
@@ -53,7 +60,7 @@ function showArrayAsTable($arrayOfPlants) {
     </div>
 </div>
 
-<?php showArrayAsTable($arrayOfPlants); ?>
+<?php showArrayAsTable($printPlants); ?>
 
 <?php require_once __DIR__.'/comp_footer.php'?>
 

@@ -27,11 +27,11 @@ class allPlant {
         $this->plant['min_hight_cm'] = $Plants['min_hight_cm'];        
         $this->plant['max_hight_cm'] = $Plants['max_hight_cm'];        
 
-        //unset($Plant);
+        unset($Plants);
     }
 
     public function getPlant(): array {
-        return $this->plant;
+        return ['allArraysOfPlant' => $this->plant];
     }
 
 }
