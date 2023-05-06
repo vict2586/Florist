@@ -31,7 +31,7 @@ class allPlant {
     }
 
     public function getPlant(): array {
-        return ['allArraysOfPlant' => $this->plant];
+        return $this->plant;
     }
 
 }

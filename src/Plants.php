@@ -46,7 +46,7 @@ class Plant extends DB
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
 
-        return $stmt->fetch();
+        return $stmt->fetchAll();
     }
 
     public function getAllFamily(): array
@@ -62,5 +62,5 @@ class Plant extends DB
     }
 }
 
-//$printPlants = new Plant;
-//print_r($printPlants->getAllPlant());
+$printPlants = new Plant;
+print_r($printPlants->getAllPlant());
