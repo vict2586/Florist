@@ -63,4 +63,8 @@
             return round($amount * $response['data'][$destinationCurrency]['value'], 2);
         }
     }
+
+    // -------------- testing that the api works
+    // $currency = New Currency;
+    // echo $currency->convert(30);
 ?>
