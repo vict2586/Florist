@@ -3,13 +3,12 @@
     require_once __DIR__.'/comp_header.php';
 ?> <?php
 
-$printPlants = new allPlant;
-$printPlants->getPlant();
+$plant = new Plant;
+$array = $plant->getAllPlant();
 
-//print_r($printPlants->getPlant());
-//var_dump($printPlants->getPlant());
+//echo $array;
 
-function showArrayAsTable($printPlants) {
+function showArrayAsTable($array) {
     echo "<table class='inventory'>
         <tr>
             <th>Name</th>
@@ -22,31 +21,19 @@ function showArrayAsTable($printPlants) {
             <th>Max height in cm</th>
         </tr>";
 
-    if (is_array($printPlants) || is_object($printPlants)) {
-     
-        foreach($printPlants as $arrayOfPlants) { 
-            $name = $arrayOfPlants['name'];
-            $latin_name = $arrayOfPlants['latin_name'];
-            $family = $arrayOfPlants['family'];
-            $price_in_DKK = $arrayOfPlants['price_DKK'];       
-            $color = $arrayOfPlants['color'];        
-            $season = $arrayOfPlants['season'];       
-            $min_height_in_cm = $arrayOfPlants['min_hight_cm'];        
-            $max_height_in_cm = $arrayOfPlants['max_hight_cm'];
-        }
-        
+    foreach($array as $PlantArray){
+        $array = new allPlant([
+        'name' => $PlantArray['name'],
+        'latin_name' => $PlantArray['latin_name'],
+        'family_name' => $PlantArray['family_name'],
+        'price_DKK' => $PlantArray['price_DKK'],
+        'color' => $PlantArray['color'],
+        'season' => $PlantArray['season'],
+        'min_hight_cm' => $PlantArray['min_hight_cm'],
+        'max_hight_cm' => $PlantArray['max_hight_cm']
+        ]);
+        echo $array->__toString();
     }
-
-    echo "<tr>
-            <td>$name</td>
-            <td>$latin_name</td>
-            <td>$family</td>
-            <td>$price_in_DKK</td>
-            <td>$color</td>
-            <td>$season</td>
-            <td>$min_height_in_cm</td>
-            <td>$max_height_in_cm</td>
-        </tr>";
 
     echo "</table>";
 }
@@ -60,7 +47,7 @@ function showArrayAsTable($printPlants) {
     </div>
 </div>
 
-<?php showArrayAsTable($printPlants); ?>
+<?php showArrayAsTable($array); ?>
 
 <?php require_once __DIR__.'/comp_footer.php'?>
 
