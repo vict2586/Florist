@@ -1,28 +1,40 @@
 <?php
+    require_once 'classes/plant.php';
+    require_once __DIR__.'/comp_header.php';
+?> <?php
 
-require_once 'classes/bicycle.php';
-require_once 'classes/parsecsv.php';
-require_once __DIR__.'/comp_header.php';
+$plant = new Plant;
+$array = $plant->getAllPlant();
 
-$csv = new ParseCSV('data/used_bicycles.csv');
+//echo $array;
 
 function showArrayAsTable($array) {
-    echo "<table class='inventory'><tr><th>Brand</th><th>Model</th><th>Year</th><th>Category</th><th>Gender</th><th>Color</th><th>Weight</th><th>Condition</th><th>Price</th></tr>";
+    echo "<table class='inventory'>
+        <tr>
+            <th>Name</th>
+            <th>Latin Name</th>
+            <th>Family</th>
+            <th>Price in DKK</th>
+            <th>Color</th>
+            <th>Season</th>
+            <th>Min height in cm</th>
+            <th>Max height in cm</th>
+        </tr>";
 
-    for ($i = 0; $i < sizeof($array); $i++ ){
-        $bike = new Bicycle([
-            'brand' => $array[$i]['brand'],
-            'model' => $array[$i]['model'],
-            'year' => $array[$i]['year'],
-            'category' => $array[$i]['category'],
-            'color' => $array[$i]['color'],
-            'gender' => $array[$i]['gender'],
-            'price' => $array[$i]['price'],
-            'weight_kg' => $array[$i]['weight_kg'],
-            'condition_id' => $array[$i]['condition_id']
-    ]);
-    echo $bike->__toString();
+    foreach($array as $PlantArray){
+        $array = new allPlant([
+        'name' => $PlantArray['name'],
+        'latin_name' => $PlantArray['latin_name'],
+        'family_name' => $PlantArray['family_name'],
+        'price_DKK' => $PlantArray['price_DKK'],
+        'color' => $PlantArray['color'],
+        'season' => $PlantArray['season'],
+        'min_hight_cm' => $PlantArray['min_hight_cm'],
+        'max_hight_cm' => $PlantArray['max_hight_cm']
+        ]);
+        echo $array->__toString();
     }
+
     echo "</table>";
 }
 ?>
@@ -35,7 +47,8 @@ function showArrayAsTable($array) {
     </div>
 </div>
 
-<?php showArrayAsTable($csv->parse()); ?>
+<?php showArrayAsTable($array); ?>
+
 <?php require_once __DIR__.'/comp_footer.php'?>
 
 

@@ -4,40 +4,54 @@ require_once 'DB.php';
 
 class Plant extends DB 
 {
-    private static int $plants = 0;
 
     /**
      * The total number of plants is saved in a private property.
      * By making it static, the calculation will be made only once
      */
-    public function __construct()
-    {
+    public function __construct() {
+
         parent::__construct();
-        if (static::$plants === 0) {
-            $sql =<<<'SQL'
-                SELECT COUNT(*) AS total
-                FROM plants;
-            SQL;
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute();
-            static::$plants = $stmt->fetch()['total'];
-        }
+        $sql =<<<'SQL'
+            SELECT COUNT(*) AS total
+            FROM plants;
+        SQL;
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $stmt->fetch()['total'];
+        
+
+        $sql =<<<'SQL'
+            SELECT COUNT(*) AS total
+            FROM plants_family;
+        SQL;
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $stmt->fetch()['total'];
+        
     }
 
-    public function getRandomPlant(): array
-    {
-        $randomTown = mt_rand(0, (static::$plants - 1));
+    public function getAllPlant(): array {
+
         $sql =<<<SQL
-            SELECT name AS name
-            FROM plants
-            LIMIT $randomTown, 1;
+            SELECT plants.name, 
+                    latin_name, 
+                    price_DKK, 
+                    min_hight_cm, 
+                    max_hight_cm, 
+                    color, 
+                    season, 
+                    plants_family.name AS family_name 
+            FROM plants 
+            LEFT JOIN plants_family 
+            ON plants.family_fk = plants_family.id; 
         SQL;
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
 
-        return $stmt->fetch();
+        return $stmt->fetchAll();
     }
 }
 
-//$fakeplant = new Plant;
-//print_r($fakeplant->getRandomPlant());
+//$printPlants = new Plant;
+//print_r($printPlants->getAllPlant());

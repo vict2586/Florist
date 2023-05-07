@@ -1,6 +1,4 @@
 <?php
-require_once __DIR__.'/classes/bicycle.php';
-require_once __DIR__.'/classes/parsecsv.php';
 require_once __DIR__.'/src/Plants.php';
 require_once __DIR__.'/comp_header.php'
 ?>
