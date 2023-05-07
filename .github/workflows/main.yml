@@ -19,5 +19,8 @@ jobs:
     - name: Install PHP dependencies
       run: composer install --prefer-dist --no-progress
 
+    - name: Run linting with PHPcodesniffer
+      run: composer run-script lint
+
     - name: Run PHPUnit tests
       run: composer run-script test
