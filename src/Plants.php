@@ -2,8 +2,6 @@
 
 require_once 'DB.php';
 
-//echo "test ...";
-
 class Plant extends DB 
 {
     private static int $plants = 0;

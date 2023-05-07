@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__.'/../src/length.php';
+
 class Bicycle {
 
   public $brand;
@@ -64,8 +66,17 @@ class Bicycle {
     }
   }
 
+  // --------------- this is just testing how we can convert a number with the converter 
+  public function set_weight_length_test($value) {
+    $length = New Length(floatval($value));
+    $weight_inches = $length->convert();
+    return number_format($weight_inches, 2) . ' inches';
+  }
+  // --------------- 
+
   /* AMR Sep 2022 */
   public function __toString() {    
+
     return <<<BIKE
       <tr>
         <td>{$this->brand}</td>
@@ -74,12 +85,15 @@ class Bicycle {
         <td>{$this->category}</td>
         <td>{$this->gender}</td>
         <td>{$this->color}</td>
-        <td>{$this->weight_kg}</td>
+        <td>{$this->set_weight_length_test($this->weight_kg)}</td>
         <td>{$this->condition()}</td>
         <td>\${$this->price}</td>
       </tr>
     BIKE;
   }
 }
-
+// --------------- this is just testing how we can convert a number with the converter 
+// $Bike = New Bicycle();
+// echo $Bike->set_weight_length_test(30);
+// --------------- 
 ?>

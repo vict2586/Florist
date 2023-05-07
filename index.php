@@ -1,7 +1,7 @@
 <?php
-require_once 'classes/bicycle.php';
-require_once 'classes/parsecsv.php';
-require_once 'Plants.php';
+require_once __DIR__.'/classes/bicycle.php';
+require_once __DIR__.'/classes/parsecsv.php';
+require_once __DIR__.'/src/Plants.php';
 require_once __DIR__.'/comp_header.php'
 ?>
 <img class="full-width" src="img/floristshop.webp" alt="colourful bikes in a row">

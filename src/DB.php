@@ -1,6 +1,6 @@
 <?php
 
-require_once '../info/Info.php';
+require_once './info/Info.php';
 
 class DB {    
     protected object $pdo;
