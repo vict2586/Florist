@@ -8,9 +8,9 @@
         "squizlabs/php_codesniffer": "*"
     },
     "scripts": {
-        "test": "vendor/bin/phpunit --colors tests",
+        "test": "vendor/bin/phpunit --colors=always tests",
         "lint": "vendor/bin/phpcs src/ classes/ --colors",
         "beautify": "vendor/bin/phpcbf src/",
-        "test_w_coverage": "vendor/bin/phpunit --colors tests --coverage-html coverage --coverage-filter src/"
+        "test_w_coverage": "vendor/bin/phpunit --colors=always tests --coverage-html coverage --coverage-filter src/"
     }
 }
