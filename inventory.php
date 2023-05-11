@@ -1,42 +1,28 @@
 <?php
     require_once 'classes/plant.php';
     require_once __DIR__.'/comp_header.php';
-?> <?php
+    require_once __DIR__.'/src/length.php';
 
-$plant = new Plant;
-$array = $plant->getAllPlant();
+    $plant = new Plant;
+    $array = $plant->getAllPlant();
 
-//echo $array;
+    function showArrayAsTable($array) {
+        foreach($array as $PlantArray){
+            $array = new allPlant([
+            'name' => $PlantArray['name'],
+            'latin_name' => $PlantArray['latin_name'],
+            'family_name' => $PlantArray['family_name'],
+            'price_DKK' => $PlantArray['price_DKK'],
+            'color' => $PlantArray['color'],
+            'season' => $PlantArray['season'],
+            'min_hight_cm' => $PlantArray['min_hight_cm'],
+            'max_hight_cm' => $PlantArray['max_hight_cm']
+            ]);
+            echo $array->__toString();
+        }
 
-function showArrayAsTable($array) {
-    echo "<table class='inventory'>
-        <tr>
-            <th>Name</th>
-            <th>Latin Name</th>
-            <th>Family</th>
-            <th>Price in DKK</th>
-            <th>Color</th>
-            <th>Season</th>
-            <th>Min height in cm</th>
-            <th>Max height in cm</th>
-        </tr>";
-
-    foreach($array as $PlantArray){
-        $array = new allPlant([
-        'name' => $PlantArray['name'],
-        'latin_name' => $PlantArray['latin_name'],
-        'family_name' => $PlantArray['family_name'],
-        'price_DKK' => $PlantArray['price_DKK'],
-        'color' => $PlantArray['color'],
-        'season' => $PlantArray['season'],
-        'min_hight_cm' => $PlantArray['min_hight_cm'],
-        'max_hight_cm' => $PlantArray['max_hight_cm']
-        ]);
-        echo $array->__toString();
+        echo "</table>";
     }
-
-    echo "</table>";
-}
 ?>
 
 <div class="img-text-flex">
@@ -47,9 +33,31 @@ function showArrayAsTable($array) {
     </div>
 </div>
 
-<?php showArrayAsTable($array); ?>
+<table class='inventory'>
+    <tr>
+        <th>Name</th>
+        <th>Latin Name</th>
+        <th>Family</th>
+        <th>Price in
+            <select name="select_currency" id="select_currency">
+                <option value="DKK">DKK</option>
+                <option value="USD">USD</option>
+            </select>
+        </th>
+        <th>Color</th>
+        <th>Season</th>
+        <th>Min height in     
+            <form id="heigthForm">
+                <select name="select_height" id="select_height">
+                    <option value="I">CM</option>
+                    <option value="M">Inches</option>
+                </select>
+            </form>
+        </th>
+        <th>Max height</th>
+    </tr>
+    <?php showArrayAsTable($array); ?>
 
 <?php require_once __DIR__.'/comp_footer.php'?>
 
-
-
+<script src="js/script.js"></script>
