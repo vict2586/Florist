@@ -9,17 +9,17 @@ $array = $plant->getAllPlant();
 //echo $array;
 
 function showArrayAsTable($array) {
-    echo "<table class='inventory'>
-        <tr>
-            <th>Name</th>
-            <th>Latin Name</th>
-            <th>Family</th>
-            <th>Price in DKK</th>
-            <th>Color</th>
-            <th>Season</th>
-            <th>Min height in cm</th>
-            <th>Max height in cm</th>
-        </tr>";
+    // echo "<table class='inventory'>
+    //     <tr>
+    //         <th>Name</th>
+    //         <th>Latin Name</th>
+    //         <th>Family</th>
+    //         <th>Price in DKK</th>
+    //         <th>Color</th>
+    //         <th>Season</th>
+    //         <th>Min height in cm</th>
+    //         <th>Max height in cm</th>
+    //     </tr>";
 
     foreach($array as $PlantArray){
         $array = new allPlant([
@@ -51,25 +51,32 @@ function convertplease(float $measure, string $system = Length::METRIC){
         <p>Welcome to Blossom's Flowers, the premier flower shop for all of your plant needs! Our passion for greenery is evident in every arrangement we create. From stunning succulents to lush foliage, we have everything you need to add a touch of nature to your home, office, or special event.</p>
     </div>
 </div>
-<div>
-    <form id="heigthForm">
-        <label for="select_height"> Height meassurement:
-            <select name="select_height" id="select_height">
-                <option value="m">Metric</option>
-                <option value="i">Imperial</option>
-            </select>
-        </label>
-    </form>
-    <label for="select_height"> Prefered currency:
-        <select name="select_height" id="select_height">
-            <option value="DKK">DKK</option>
-            <option value="USD">USD</option>
-        </select>
-    </label>
-    <p class="test">36</p>
-</div>
 
-<?php showArrayAsTable($array); ?>
+<table class='inventory'>
+    <tr>
+        <th>Name</th>
+        <th>Latin Name</th>
+        <th>Family</th>
+        <th>Price in
+            <select name="select_currency" id="select_currency">
+                <option value="DKK">DKK</option>
+                <option value="USD">USD</option>
+            </select>
+        </th>
+        <th>Color</th>
+        <th>Season</th>
+        <th>Min height in     
+            <form id="heigthForm">
+                <select name="select_height" id="select_height">
+                    <option value="I">CM</option>
+                    <option value="M">Inches</option>
+                </select>
+            </form>
+        </th>
+        <th>Max height</th>
+    </tr>
+    <?php showArrayAsTable($array); ?>
+
 <?php require_once __DIR__.'/comp_footer.php'?>
 
 <script>
@@ -78,12 +85,27 @@ function convertplease(float $measure, string $system = Length::METRIC){
 
 const API_URL = 'api/index.php';
 
+// convert heigths
 document.querySelector('#select_height').addEventListener('change', function(e) {
-    e.preventDefault();
-    const measure = 36;
+    $('.inventory tr').each( async (elm) => {
+        if(elm > 0){
+            const maxMeasure = $(`.inventory tr:nth-of-type(${elm + 1})`).children().last().html();
+            const maxPlacement = $(`.inventory tr:nth-of-type(${elm + 1})`).children().last();
+            let newMaxNum = await sendConvert(maxMeasure);
+            maxPlacement.html(newMaxNum);
+
+            const minMeasure = $(`.inventory tr:nth-of-type(${elm + 1})`).children().eq(-2).html();
+            const minPlacement = $(`.inventory tr:nth-of-type(${elm + 1})`).children().eq(-2);
+            let newMinNum = await sendConvert(minMeasure);
+            minPlacement.html(newMinNum);
+        }
+    })
+});
+
+async function sendConvert(measure){
     const system = document.querySelector('#select_height').value;
     
-    $.ajax({
+    const text = $.ajax({
         url: API_URL,
         method: 'POST',
         data: {
@@ -91,28 +113,11 @@ document.querySelector('#select_height').addEventListener('change', function(e) 
             'measure': measure,
             'system': system
         }
-    }).done(function(result) {
-        const text = measure + (system === 'M' ? ' centimeters' : ' inches') + ' is ' + result + (system === 'M' ? ' inches' : ' centimeters');
+    })
+    return text;
+}
 
-        $('.test').text(text);
-    });
-});
-
+// logic:
+// for each table row in inventory find the last and second to last element and recalculate height.
 
 </script>
-function fetchData() {
-  fetch("https://kea21-7e1e.restdb.io/rest/t9-post?sort=date&dir=-1&max=5", {
-    method: "GET",
-    headers: {
-      "x-apikey": "602f9e445ad3610fb5bb63d5",
-    },
-  })
-    .then((res) => res.json())
-    .then((response) => {
-      handlePosts(response);
-      console.log(response);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-}
