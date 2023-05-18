@@ -136,10 +136,80 @@ class IndividualArrayTest extends TestCase {
     // ------------------------------------------ 
     // TEST IF THE 0 ARRAY KEY "name" IS RIGHT FORMAT
     // ------------------------------------------ 
-    public function testDBStreetHasCorrectFormat(){
+    public function test_name_has_correct_format(){
         $name = $this->plants->getAllPlant()[0]['name'];
 
-        $this->assertMatchesRegularExpression("/^[a-zA-Z ]*$/", $name);
+        $this->assertMatchesRegularExpression("/^[a-zA-Z\-'\s]{1,100}$/", $name);
+    }
+
+
+    // ------------------------------------------ 
+    // TEST IF THE 0 ARRAY KEY "latin_name" IS RIGHT FORMAT
+    // ------------------------------------------ 
+    public function test_latin_name_has_correct_format(){
+        $latin_name = $this->plants->getAllPlant()[0]['latin_name'];
+
+        $this->assertMatchesRegularExpression("/^[a-zA-Z\s]{1,100}$/", $latin_name);
+    }
+
+
+    // ------------------------------------------ 
+    // TEST IF THE 0 ARRAY KEY "price_DKK" IS RIGHT FORMAT
+    // ------------------------------------------ 
+    public function test_price_DKK_has_correct_format(){
+        $price_DKK = $this->plants->getAllPlant()[0]['price_DKK'];
+
+        $this->assertMatchesRegularExpression("/^[1-9][0-9]{0,5}|6[1-9]\.[0-9]{0,5}|65.535$/", $price_DKK);
+    }
+
+
+    // ------------------------------------------ 
+    // TEST IF THE 0 ARRAY KEY "min_hight_cm" IS RIGHT FORMAT
+    // ------------------------------------------ 
+    public function test_min_hight_cm_has_correct_format(){
+        $min_hight_cm = $this->plants->getAllPlant()[0]['min_hight_cm'];
+
+        $this->assertMatchesRegularExpression("/^[1-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/", $min_hight_cm);
+    }
+
+
+    // ------------------------------------------ 
+    // TEST IF THE 0 ARRAY KEY "max_hight_cm" IS RIGHT FORMAT
+    // ------------------------------------------ 
+    public function test_max_hight_cm_has_correct_format(){
+        $max_hight_cm = $this->plants->getAllPlant()[0]['max_hight_cm'];
+
+        $this->assertMatchesRegularExpression("/^[1-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/", $max_hight_cm);
+    }
+
+
+    // ------------------------------------------ 
+    // TEST IF THE 0 ARRAY KEY "color" IS RIGHT FORMAT
+    // ------------------------------------------ 
+    public function test_color_has_correct_format(){
+        $color = $this->plants->getAllPlant()[0]['color'];
+
+        $this->assertMatchesRegularExpression("/^[a-zA-Z\,'\s]{1,50}$/", $color);
+    }
+
+
+    // ------------------------------------------ 
+    // TEST IF THE 0 ARRAY KEY "season" IS RIGHT FORMAT
+    // ------------------------------------------ 
+    public function test_season_has_correct_format(){
+        $season = $this->plants->getAllPlant()[0]['season'];
+
+        $this->assertMatchesRegularExpression("/^[a-zA-Z\w\s\/\s\w]{1,50}$/", $season);
+    }
+
+
+    // ------------------------------------------ 
+    // TEST IF THE 0 ARRAY KEY "family_name" IS RIGHT FORMAT
+    // ------------------------------------------ 
+    public function test_family_name_has_correct_format(){
+        $family_name = $this->plants->getAllPlant()[0]['family_name'];
+
+        $this->assertMatchesRegularExpression("/^[a-zA-Z]{1,50}$/", $family_name);
     }
 
 }
