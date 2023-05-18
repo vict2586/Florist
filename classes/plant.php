@@ -5,11 +5,6 @@ require_once '../Florist/src/Plants.php';
 
 class allPlant {
 
-    public function setPlant(): void {
-        $Plants = new Plant;
-        $Plants = $Plants->getAllPlant();
-    }
-
     public $name;
     public $latin_name;
     public $family;
