@@ -4,8 +4,8 @@ require_once __DIR__. '/../../src/Plants.php';
 
 use PHPUnit\Framework\TestCase;
 
-$printPlants = new Plant;
-print_r($printPlants->getAllPlant()[0]);
+//$printPlants = new Plant;
+//print_r($printPlants->getAllPlant()[0]);
 
 class IndividualArrayTest extends TestCase {
 
