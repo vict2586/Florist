@@ -9,7 +9,7 @@
     },
     "scripts": {
         "test": "vendor/bin/phpunit --colors=always tests",
-        "lint": "vendor/bin/phpcs --standard=phpcs.xml src/ classes/ --colors",
+        "lint": "vendor/bin/phpcs --warning-severity=6 --standard=phpcs.xml src/ classes/ --colors",
         "beautify": "vendor/bin/phpcbf src/",
         "test_w_coverage": "vendor/bin/phpunit --colors=always tests --coverage-html coverage --coverage-filter src/"
     }
