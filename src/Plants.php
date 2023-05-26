@@ -2,14 +2,15 @@
 
 require_once 'DB.php';
 
-class Plant extends DB 
+class Plant extends DB
 {
 
     /**
      * The total number of plants is saved in a private property.
      * By making it static, the calculation will be made only once
      */
-    public function __construct() {
+    public function __construct()
+    {
 
         parent::__construct();
         $sql =<<<'SQL'
@@ -28,10 +29,10 @@ class Plant extends DB
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $stmt->fetch()['total'];
-        
     }
 
-    public function getAllPlant(): array {
+    public function getAllPlant(): array
+    {
 
         $sql =<<<SQL
             SELECT plants.name, 

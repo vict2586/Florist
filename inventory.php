@@ -8,7 +8,7 @@
 
     function showArrayAsTable($array) {
         foreach($array as $PlantArray){
-            $array = new allPlant([
+            $array = new AllPlant([
             'name' => $PlantArray['name'],
             'latin_name' => $PlantArray['latin_name'],
             'family_name' => $PlantArray['family_name'],
