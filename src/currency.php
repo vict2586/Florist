@@ -23,23 +23,6 @@ class Currency
         return $response;
     }
 
-    private function extractCurrency($currency)
-    {
-        return [$currency['code'], $currency['name']];
-    }
-
-    public function getCurrencies()
-    {
-        $url = self::BASE_URL . 'currencies?apikey=' . self::API_KEY;
-
-        $response = $this->apiCall($url);
-
-        // array_values turns the associative array into a normal array, so that it can be processed by array_map.
-        // array_filter eliminates null values.
-        $currencies = array_filter(array_values($response['data']));
-        return array_map(array($this, 'extractCurrency'), $currencies);
-    }
-
     /**
      * Description of what this module is doing.
      */
