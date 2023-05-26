@@ -3,7 +3,8 @@
 require_once '../Florist/src/Plants.php';
 //require_once '../src/Plants.php';
 
-class allPlant {
+class AllPlant
+{
 
     public $name;
     public $latin_name;
@@ -14,7 +15,8 @@ class allPlant {
     protected $min_height_in_cm;
     protected $max_height_in_cm;
 
-    public function __construct($args=[]) {
+    public function __construct($args = [])
+    {
         $this->name = $args['name'] ?? '';
         $this->latin_name = $args['latin_name'] ?? '';
         $this->family = $args['family_name'] ?? '';
@@ -25,20 +27,23 @@ class allPlant {
         $this->max_height_in_cm = $args['max_hight_cm'] ?? 0;
     }
 
-    public function height_cm() {
+    public function heightCm()
+    {
         return number_format($this->min_height_in_cm, 2) . ' - ' . number_format($this->max_height_in_cm, 2) . ' cm';
     }
 
-    public function set_min_in_height_cm($value) {
+    public function setMinInHeightCm($value)
+    {
         $this->min_height_in_cm = floatval($value);
     }
 
-    public function set_max_in_height_cm($value) {
+    public function setMaxInHeightCm($value)
+    {
         $this->max_height_in_cm = floatval($value);
     }
 
-    public function __toString() {    
-
+    public function __toString()
+    {
         return <<<PLANT
           <tr>
             <td>{$this->name}</td>
@@ -52,8 +57,4 @@ class allPlant {
           </tr>
         PLANT;
     }
-
 }
-
-?>
-  

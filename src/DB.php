@@ -3,13 +3,16 @@
 require_once '../Florist/info/info.php';
 //require_once '../info/info.php';
 
-class DB {    
+class DB
+{
+    
     protected object $pdo;
 
     /**
      * Opens a connection to the database
      */
-    public function __construct() {
+    public function __construct()
+    {
         $dsn = 'mysql:host=' . Info::HOST . ';dbname=' . Info::DB_NAME . ';charset=utf8';
         $options = [
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
@@ -17,7 +20,7 @@ class DB {
         ];
 
         try {
-            $this->pdo = @new PDO($dsn, Info::USER, Info::PASSWORD, $options); 
+            $this->pdo = @new PDO($dsn, Info::USER, Info::PASSWORD, $options);
         } catch (\PDOException $e) {
             echo 'Connection unsuccessful';
             die('Connection unsuccessful: ' . $e->getMessage());
@@ -28,8 +31,8 @@ class DB {
     /**
      * Closes a connection to the database
      */
-    public function __destruct() {
+    public function __destruct()
+    {
         unset($this->pdo);
     }
 }
-?>
