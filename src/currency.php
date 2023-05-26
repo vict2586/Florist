@@ -55,11 +55,10 @@ class Currency
             
         if (!array_key_exists($destinationCurrency, $response['data'])) {
             return 'Destination currency not found';
-        } 
+        }
         // returns a number with 2 decimals (0.00)
         return round($amount * $response['data'][$destinationCurrency]['value'], 2);
     }
-    
 }
 
 
