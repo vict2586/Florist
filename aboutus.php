@@ -1,6 +1,4 @@
 <?php
-require_once 'classes/bicycle.php';
-require_once 'classes/parsecsv.php';
 require_once __DIR__.'/comp_header.php'
 ?>
 <div class="aboutus-text-container">
