@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__. '/../../test/unitTests/CurrencyStub.php';
+require_once __DIR__. '/CurrencyStub.php';
 
 use PHPUnit\Framework\TestCase;
 
