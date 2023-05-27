@@ -4,7 +4,7 @@ require_once __DIR__. '/../../src/currency.php';
 
 use PHPUnit\Framework\TestCase;
 
-class currencyTest extends TestCase
+class CurrencyTest extends TestCase
 {
     private Currency $currency;
 
@@ -21,7 +21,7 @@ class currencyTest extends TestCase
     /**
     * @dataProvider currencyQueries
     */
-    public function testCurrencyInputsDefault($amount, $from = 'DKK', $to = 'EUR', $expected, $testMessage = 'test currency')
+    public function testCurrencyInputsDefault($amount, $expected, $from = 'DKK', $to = 'EUR', $testMessage = 'test currency')
     {
         $this->currency->method('convert')
         ->with(30, 'DKK', 'EUR')
