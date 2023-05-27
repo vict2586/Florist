@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 //$printPlants = new Plant;
 //print_r($printPlants->getAllPlant());
 
-class ArrayOfArrayTest extends TestCase
+class PlantArrayTest extends TestCase
 {
 
     private Plant $plants;
@@ -25,7 +25,7 @@ class ArrayOfArrayTest extends TestCase
     // ------------------------------------------
     // TEST IF WE RECIEVE AN ARRAY OF ARRAYS
     // ------------------------------------------
-    public function Test_if_array_of_arrays()
+    public function testIfArrayOfArrays()
     {
         $result = is_array($this->plants->getAllPlant());
 
@@ -35,7 +35,7 @@ class ArrayOfArrayTest extends TestCase
     // ------------------------------------------
     // TEST IF WE RECIEVE ARRAY NUMBER 0 AS AN ARRAY
     // ------------------------------------------
-    public function test_if_array_0_is_array()
+    public function testIfArray0IsArray()
     {
         $result = is_array($this->plants->getAllPlant()[0]);
 
@@ -45,7 +45,7 @@ class ArrayOfArrayTest extends TestCase
     // ------------------------------------------
     // TEST IF WE RECIEVE ARRAY NUMBER 1 AS AN ARRAY
     // ------------------------------------------
-    public function test_if_array_1_is_array()
+    public function testIfArray1IsArray()
     {
         $result = is_array($this->plants->getAllPlant()[1]);
 
@@ -55,7 +55,7 @@ class ArrayOfArrayTest extends TestCase
     // ------------------------------------------
     // TEST IF WE RECIEVE ARRAY NUMBER 2 AS AN ARRAY
     // ------------------------------------------
-    public function test_if_array_2_is_array()
+    public function testIfArray2IsArray()
     {
         $result = is_array($this->plants->getAllPlant()[2]);
 
@@ -65,7 +65,7 @@ class ArrayOfArrayTest extends TestCase
     // ------------------------------------------
     // TEST IF WE RECIEVE ARRAY NUMBER 3 AS AN ARRAY
     // ------------------------------------------
-    public function test_if_array_3_is_array()
+    public function testIfArray3IsArray()
     {
         $result = is_array($this->plants->getAllPlant()[3]);
 
@@ -75,7 +75,7 @@ class ArrayOfArrayTest extends TestCase
     // ------------------------------------------
     // TEST IF WE RECIEVE ARRAY NUMBER 4 AS AN ARRAY
     // ------------------------------------------
-    public function test_if_array_4_is_array()
+    public function testIfArray4IsArray()
     {
         $result = is_array($this->plants->getAllPlant()[4]);
 
@@ -85,7 +85,7 @@ class ArrayOfArrayTest extends TestCase
     // ------------------------------------------
     // TEST IF WE RECIEVE ARRAY NUMBER 5 AS AN ARRAY
     // ------------------------------------------
-    public function test_if_array_5_is_array()
+    public function testIfArray5IsArray()
     {
         $result = is_array($this->plants->getAllPlant()[5]);
 
@@ -95,7 +95,7 @@ class ArrayOfArrayTest extends TestCase
     // ------------------------------------------
     // TEST IF WE RECIEVE ARRAY NUMBER 6 AS AN ARRAY
     // ------------------------------------------
-    public function test_if_array_6_is_array()
+    public function testIfArray6IsArray()
     {
         $result = is_array($this->plants->getAllPlant()[6]);
 
@@ -105,7 +105,7 @@ class ArrayOfArrayTest extends TestCase
     // ------------------------------------------
     // TEST IF WE RECIEVE ARRAY NUMBER 7 AS AN ARRAY
     // ------------------------------------------
-    public function test_if_array_7_is_array()
+    public function testIfArray7IsArray()
     {
         $result = is_array($this->plants->getAllPlant()[7]);
 
@@ -115,7 +115,7 @@ class ArrayOfArrayTest extends TestCase
     // ------------------------------------------
     // TEST IF WE RECIEVE ARRAY NUMBER 8 AS AN ARRAY
     // ------------------------------------------
-    public function test_if_array_8_is_array()
+    public function testIfArray8IsArray()
     {
         $result = is_array($this->plants->getAllPlant()[8]);
 
@@ -125,7 +125,7 @@ class ArrayOfArrayTest extends TestCase
     // ------------------------------------------
     // TEST IF WE RECIEVE ARRAY NUMBER 9 AS AN ARRAY
     // ------------------------------------------
-    public function test_if_array_9_is_array()
+    public function testIfArray9IsArray()
     {
         $result = is_array($this->plants->getAllPlant()[9]);
 

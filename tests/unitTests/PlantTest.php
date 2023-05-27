@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 //$printPlants = new Plant;
 //print_r($printPlants->getAllPlant()[0]);
 
-class IndividualArrayTest extends TestCase
+class PlantTest extends TestCase
 {
 
     private Plant $plants;
@@ -29,7 +29,7 @@ class IndividualArrayTest extends TestCase
     // ------------------------------------------
     // TEST IF THE 0 ARRAY HAS THE RIGHT KEYS
     // ------------------------------------------
-    public function test_if_array_0_has_keys($key)
+    public function testIfArray0HasKeys($key)
     {
         $result = array_key_exists($key, $this->plants->getAllPlant()[0]);
     
@@ -58,7 +58,7 @@ class IndividualArrayTest extends TestCase
     // ------------------------------------------
     // TEST IF THE 0 ARRAY NOT HAS THE RIGHT KEYS
     // ------------------------------------------
-    public function test_if_array_0_not_has_keys($key)
+    public function testIfArray0NotHasKeys($key)
     {
         $result = array_key_exists($key, $this->plants->getAllPlant()[0]);
     
@@ -85,7 +85,7 @@ class IndividualArrayTest extends TestCase
     // ------------------------------------------
     // TEST IF THE 0 ARRAY KEYS IS STRING
     // ------------------------------------------
-    public function test_if_array_0_keys_is_string($key)
+    public function testIfArray0KeysIsString($key)
     {
         
         $this->assertIsString($this->plants->getAllPlant()[0][$key]);
@@ -110,7 +110,7 @@ class IndividualArrayTest extends TestCase
     // ------------------------------------------
     // TEST IF THE 0 ARRAY KEYS IS INT
     // ------------------------------------------
-    public function test_if_array_0_keys_is_int($key)
+    public function testIfArray0KeysIsInt($key)
     {
 
         $this->assertIsInt($this->plants->getAllPlant()[0][$key]);
@@ -131,7 +131,7 @@ class IndividualArrayTest extends TestCase
     // ------------------------------------------
     // TEST IF THE 0 ARRAY KEYS IS FLOAT
     // ------------------------------------------
-    public function test_if_array_0_keys_is_float($key)
+    public function testIfArray0KeysIsFloat($key)
     {
 
         $this->assertIsFloat($this->plants->getAllPlant()[0][$key]);
@@ -149,7 +149,7 @@ class IndividualArrayTest extends TestCase
     // ------------------------------------------
     // TEST IF THE 0 ARRAY KEY "name" IS RIGHT FORMAT
     // ------------------------------------------
-    public function test_name_has_correct_format()
+    public function testNameHasCorrectFormat()
     {
         $name = $this->plants->getAllPlant()[0]['name'];
 
@@ -160,7 +160,7 @@ class IndividualArrayTest extends TestCase
     // ------------------------------------------
     // TEST IF THE 0 ARRAY KEY "latin_name" IS RIGHT FORMAT
     // ------------------------------------------
-    public function test_latin_name_has_correct_format()
+    public function testLatinNameHasCorrectFormat()
     {
         $latin_name = $this->plants->getAllPlant()[0]['latin_name'];
 
@@ -171,7 +171,7 @@ class IndividualArrayTest extends TestCase
     // ------------------------------------------
     // TEST IF THE 0 ARRAY KEY "price_DKK" IS RIGHT FORMAT
     // ------------------------------------------
-    public function test_price_DKK_has_correct_format()
+    public function testPriceDKKHasCorrectFormat()
     {
         $price_DKK = $this->plants->getAllPlant()[0]['price_DKK'];
 
@@ -182,7 +182,7 @@ class IndividualArrayTest extends TestCase
     // ------------------------------------------
     // TEST IF THE 0 ARRAY KEY "min_hight_cm" IS RIGHT FORMAT
     // ------------------------------------------
-    public function test_min_hight_cm_has_correct_format()
+    public function testMinHightCmHasCorrectFormat()
     {
         $min_hight_cm = $this->plants->getAllPlant()[0]['min_hight_cm'];
 
@@ -193,7 +193,7 @@ class IndividualArrayTest extends TestCase
     // ------------------------------------------
     // TEST IF THE 0 ARRAY KEY "max_hight_cm" IS RIGHT FORMAT
     // ------------------------------------------
-    public function test_max_hight_cm_has_correct_format()
+    public function testMaxHightCmHasCorrectFormat()
     {
         $max_hight_cm = $this->plants->getAllPlant()[0]['max_hight_cm'];
 
@@ -204,7 +204,7 @@ class IndividualArrayTest extends TestCase
     // ------------------------------------------
     // TEST IF THE 0 ARRAY KEY "color" IS RIGHT FORMAT
     // ------------------------------------------
-    public function test_color_has_correct_format()
+    public function testColorHasCorrectFormat()
     {
         $color = $this->plants->getAllPlant()[0]['color'];
 
@@ -215,7 +215,7 @@ class IndividualArrayTest extends TestCase
     // ------------------------------------------
     // TEST IF THE 0 ARRAY KEY "season" IS RIGHT FORMAT
     // ------------------------------------------
-    public function test_season_has_correct_format()
+    public function testSeasonHasCorrectFormat()
     {
         $season = $this->plants->getAllPlant()[0]['season'];
 
@@ -226,7 +226,7 @@ class IndividualArrayTest extends TestCase
     // ------------------------------------------
     // TEST IF THE 0 ARRAY KEY "family_name" IS RIGHT FORMAT
     // ------------------------------------------
-    public function test_family_name_has_correct_format()
+    public function testFamilyNameHasCorrectFormat()
     {
         $family_name = $this->plants->getAllPlant()[0]['family_name'];
 
@@ -243,7 +243,7 @@ class IndividualArrayTest extends TestCase
     // ------------------------------------------
     // TEST IF "name" IS RIGHT FORMAT
     // ------------------------------------------
-    public function test_our_name_format($name, $expected)
+    public function testOurNameFormat($name, $expected)
     {
 
         $result = preg_match("/^[a-zA-Z\-'\s]{1,100}$/", $name) === 1;
@@ -269,7 +269,7 @@ class IndividualArrayTest extends TestCase
     // ------------------------------------------
     // TEST IF "latin_name" IS RIGHT FORMAT
     // ------------------------------------------
-    public function test_our_latin_name_format($latin_name, $expected)
+    public function testOurLatinNameFormat($latin_name, $expected)
     {
 
         $result = preg_match("/^[a-zA-Z\s]{1,100}$/", $latin_name) === 1;
@@ -295,7 +295,7 @@ class IndividualArrayTest extends TestCase
     // ------------------------------------------
     // TEST IF "price_DKK" IS RIGHT FORMAT
     // ------------------------------------------
-    public function test_our_price_DKK_format($price_DKK, $expected)
+    public function testOurPriceDKKFormat($price_DKK, $expected)
     {
 
         $result = preg_match("/^[1-9][0-9]{0,4}|[1-9]{0,1}[0-9]{0,1}\.[0-9]{0,5}$/", $price_DKK) === 1;
@@ -323,7 +323,7 @@ class IndividualArrayTest extends TestCase
     // ------------------------------------------
     // TEST IF "min_hight_cm" IS RIGHT FORMAT
     // ------------------------------------------
-    public function test_our_min_hight_cm_format($min_hight_cm, $expected)
+    public function testOurMinHightCmFormat($min_hight_cm, $expected)
     {
 
         $result = preg_match("/^[1-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/", $min_hight_cm) === 1;
@@ -351,7 +351,7 @@ class IndividualArrayTest extends TestCase
     // ------------------------------------------
     // TEST IF "max_hight_cm" IS RIGHT FORMAT
     // ------------------------------------------
-    public function test_our_max_hight_cm_format($max_hight_cm, $expected)
+    public function testOurMaxHightCmFormat($max_hight_cm, $expected)
     {
 
         $result = preg_match("/^[1-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/", $max_hight_cm) === 1;
@@ -379,7 +379,7 @@ class IndividualArrayTest extends TestCase
     // ------------------------------------------
     // TEST IF "color" IS RIGHT FORMAT
     // ------------------------------------------
-    public function test_our_color_format($color, $expected)
+    public function testOurColorFormat($color, $expected)
     {
 
         $result = preg_match("/^[a-zA-Z\s\-\,\']{1,50}$/", $color) === 1;
@@ -405,7 +405,7 @@ class IndividualArrayTest extends TestCase
     // ------------------------------------------
     // TEST IF "season" IS RIGHT FORMAT
     // ------------------------------------------
-    public function test_our_season_format($season, $expected)
+    public function testOurSeasonFormat($season, $expected)
     {
 
         $result = preg_match("/^[a-zA-Z]{1,50}|[a-zA-Z\s]+\/+[\sa-zA-Z]{1,50}$/", $season) === 1;
@@ -431,7 +431,7 @@ class IndividualArrayTest extends TestCase
     // ------------------------------------------
     // TEST IF "family_name" IS RIGHT FORMAT
     // ------------------------------------------
-    public function test_our_family_name_format($family_name, $expected)
+    public function testOurFamilyNameFormat($family_name, $expected)
     {
 
         $result = preg_match("/^[a-zA-Z]{1,50}$/", $family_name) === 1;

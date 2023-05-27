@@ -4,7 +4,7 @@ require_once 'src/length.php';
 
 use PHPUnit\Framework\TestCase;
 
-class lengthTest extends TestCase
+class LengthTest extends TestCase
 {
 
     /**
@@ -14,7 +14,7 @@ class lengthTest extends TestCase
     // ------------------------------------------
     // TEST CONVERT PASSES
     // ------------------------------------------
-    public function test_convert_passes($measure, $system, $expected): void
+    public function testConvertPasses($measure, $system, $expected): void
     {
         $length = new Length($measure, $system);
 
@@ -48,7 +48,7 @@ class lengthTest extends TestCase
     // ------------------------------------------
     // TEST CONVERT FAILS
     // ------------------------------------------
-    public function test_convert_fails($measure, $system, $expected): void
+    public function testConvertFails($measure, $system, $expected): void
     {
         $length = new Length($measure, $system);
 
@@ -69,7 +69,7 @@ class lengthTest extends TestCase
     // ------------------------------------------
     // TEST INVALID SYSTEM ARGUMENT
     // ------------------------------------------
-    public function test_invalid_system_argument(): void
+    public function testInvalidSystemArgument(): void
     {
             
         $this->expectException(InvalidArgumentException::class);
