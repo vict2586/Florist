@@ -71,7 +71,6 @@ class LengthTest extends TestCase
     // ------------------------------------------
     public function testInvalidSystemArgument(): void
     {
-            
         $this->expectException(InvalidArgumentException::class);
         $length = new Length(1, 'K');
     }

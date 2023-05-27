@@ -126,7 +126,6 @@ class CurrencyTest extends TestCase
             ['DKK', true],
             ['USD', true],
             ['EUR', true],
-
             ['DK.', false],
             ['dk', false],
             ['DK', false],
