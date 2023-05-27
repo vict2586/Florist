@@ -3,7 +3,8 @@ const {By, Builder} = require('selenium-webdriver');
 const assert = require('assert');
 require('geckodriver');
 
-async function testClickThroughSite() {
+async function testClickThroughSite()
+{
     // starting driver and going to the site
     const driver = await new Builder().forBrowser('firefox').build();
     await driver.get(pageUnderTest);
@@ -28,7 +29,8 @@ async function testClickThroughSite() {
     await driver.quit();
 }
 
-async function testConvertHeight() {
+async function testConvertHeight()
+{
     // starting driver and going to the site
     const driver = await new Builder().forBrowser('firefox').build();
     await driver.get(pageUnderTest);
@@ -36,7 +38,7 @@ async function testConvertHeight() {
     // navigate to the inventory page
     await driver.findElement(By.css('.btn-container .btn:nth-of-type(2)')).click();
 
-    // select the imperial height 
+    // select the imperial height
     await driver.findElement(By.css('select[name="select_height"] > option[value="M"]')).click();
     const imperialHeight = await driver.findElement(By.css(`.inventory tr:nth-of-type(2) td:last-of-type`)).getText();
     // assert that the height has changed
@@ -51,7 +53,8 @@ async function testConvertHeight() {
     await driver.quit();
 }
 
-async function testConvertCurrency() {
+async function testConvertCurrency()
+{
     // starting driver and going to the site
     const driver = await new Builder().forBrowser('firefox').build();
     await driver.get(pageUnderTest);

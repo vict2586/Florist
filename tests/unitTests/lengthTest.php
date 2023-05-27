@@ -4,16 +4,18 @@ require_once 'src/length.php';
 
 use PHPUnit\Framework\TestCase;
 
-class lengthTest extends TestCase {
+class lengthTest extends TestCase
+{
 
     /**
      * @dataProvider convertPasses
      */
         
-    // ------------------------------------------ 
+    // ------------------------------------------
     // TEST CONVERT PASSES
-    // ------------------------------------------ 
-    public function test_convert_passes($measure, $system, $expected): void {
+    // ------------------------------------------
+    public function test_convert_passes($measure, $system, $expected): void
+    {
         $length = new Length($measure, $system);
 
         $result = $length->convert();
@@ -21,7 +23,8 @@ class lengthTest extends TestCase {
         $this->assertEquals($expected, $result);
     }
 
-    public function convertPasses(): array {
+    public function convertPasses(): array
+    {
         return [
             [0, Length::IMPERIAL, 0],                                               // Lower valid boundary
             [1, Length::IMPERIAL, 2.54],
@@ -42,10 +45,11 @@ class lengthTest extends TestCase {
      * @dataProvider convertFails
      */
         
-    // ------------------------------------------ 
+    // ------------------------------------------
     // TEST CONVERT FAILS
-    // ------------------------------------------ 
-    public function test_convert_fails($measure, $system, $expected): void {
+    // ------------------------------------------
+    public function test_convert_fails($measure, $system, $expected): void
+    {
         $length = new Length($measure, $system);
 
         $result = $length->convert();
@@ -53,7 +57,8 @@ class lengthTest extends TestCase {
         $this->assertNotEquals($expected, $result);
     }
 
-    public function convertFails(): array {
+    public function convertFails(): array
+    {
         return [
             [-1, Length::IMPERIAL, -2.54],
             [7.077532027016992E+307, Length::IMPERIAL, 1.7976931348623157E+308],    // Upper invalid boundary
@@ -61,10 +66,11 @@ class lengthTest extends TestCase {
     }
 
 
-    // ------------------------------------------ 
+    // ------------------------------------------
     // TEST INVALID SYSTEM ARGUMENT
-    // ------------------------------------------ 
-    public function test_invalid_system_argument(): void {
+    // ------------------------------------------
+    public function test_invalid_system_argument(): void
+    {
             
         $this->expectException(InvalidArgumentException::class);
         $length = new Length(1, 'K');

@@ -4,16 +4,16 @@ require_once __DIR__. '/../../src/currency.php';
 
 use PHPUnit\Framework\TestCase;
 
-class currencyTest extends TestCase 
+class currencyTest extends TestCase
 {
     private Currency $currency;
 
-    protected function setUp(): void 
+    protected function setUp(): void
     {
         $this->currency = $this->createStub(Currency::class);
     }
 
-    public function tearDown(): void 
+    public function tearDown(): void
     {
         unset($this->currency);
     }
@@ -21,7 +21,7 @@ class currencyTest extends TestCase
     /**
     * @dataProvider currencyQueries
     */
-    public function testCurrencyInputsDefault($amount, $from = 'DKK', $to = 'EUR', $expected, $testMessage = 'test currency') 
+    public function testCurrencyInputsDefault($amount, $from = 'DKK', $to = 'EUR', $expected, $testMessage = 'test currency')
     {
         $this->currency->method('convert')
         ->with(30, 'DKK', 'EUR')
@@ -31,7 +31,7 @@ class currencyTest extends TestCase
         $this->assertEquals($expected, $result, $testMessage);
     }
 
-    public function currencyQueries() 
+    public function currencyQueries()
     {
         return [
             [
@@ -51,7 +51,7 @@ class currencyTest extends TestCase
         ];
     }
 
-    public function testCurrencyInputsEURtoDKK() 
+    public function testCurrencyInputsEURtoDKK()
     {
         $this->currency->method('convert')
         ->with(2, 'EUR', 'DKK')
@@ -61,7 +61,7 @@ class currencyTest extends TestCase
         $this->assertEquals(14.90, $result, "Assert that convert also works with other currencies");
     }
 
-    public function testOutputIsFloat() 
+    public function testOutputIsFloat()
     {
         $this->currency->method('convert')
         ->with(30, 'DKK', 'EUR')
@@ -74,7 +74,7 @@ class currencyTest extends TestCase
     /**
     * @dataProvider currencyOutputsForDecimalTest
     */
-    public function testOutputFloatHasTwoDecimals($expected, $bool) 
+    public function testOutputFloatHasTwoDecimals($expected, $bool)
     {
         $this->currency->method('convert')
         ->with(30, 'DKK', 'EUR')
@@ -85,7 +85,7 @@ class currencyTest extends TestCase
         $this->assertEquals($bool, $result);
     }
 
-    public function currencyOutputsForDecimalTest() 
+    public function currencyOutputsForDecimalTest()
     {
         return [
             [
@@ -114,13 +114,13 @@ class currencyTest extends TestCase
     /**
     * @dataProvider currencyCodes
     */
-    public function testCurrencyCodesFollowREGEXPattern($currencyCode, $expected) 
+    public function testCurrencyCodesFollowREGEXPattern($currencyCode, $expected)
     {
         $result = preg_match('/^(?!([A-Z])\1\1$)[A-Z]{3}$/', $currencyCode) === 1;
         $this->assertEquals($expected, $result);
     }
 
-    public function currencyCodes() 
+    public function currencyCodes()
     {
         return [
             ['DKK', true],
