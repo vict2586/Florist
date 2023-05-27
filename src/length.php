@@ -15,8 +15,8 @@ class Length
     private string $system;
 
     /**
-     * @param measure: numeric length measure to convert in either centimeters (metric) or inches (imperial)
-     * @param system: the measure's length system: 'M' (metric), 'I' (imperial)
+     * param measure: numeric length measure to convert in either centimeters (metric) or inches (imperial)
+     * param system: the measure's length system: 'M' (metric), 'I' (imperial)
      */
     public function __construct(float $measure, string $system = Length::METRIC)
     {
@@ -29,7 +29,7 @@ class Length
     }
 
     /**
-     * @return the conversion from either centimeters to inches or viceversa
+     * return the conversion from either centimeters to inches or viceversa
      */
     public function convert()
     {

@@ -25,8 +25,7 @@ class CurrencyTest extends TestCase
     */
     public function testCurrencyInputsDefault($amount, $expected, $from = 'DKK', $to = 'EUR', $testMessage = 'test currency')
     {
-        $this->currency->method('convert')
-        ->with(30, 'DKK', 'EUR')
+        $this->currency->convert(30, 'DKK', 'EUR')
         ->willReturn(4.03);
 
         $result = $this->currency->convert($amount, $from, $to);
@@ -55,8 +54,7 @@ class CurrencyTest extends TestCase
 
     public function testCurrencyInputsEURtoDKK()
     {
-        $this->currency->method('convert')
-        ->with(2, 'EUR', 'DKK')
+        $this->currency->convert(2, 'EUR', 'DKK')
         ->willReturn(14.90);
 
         $result = $this->currency->convert(2, 'EUR', 'DKK');
@@ -65,8 +63,7 @@ class CurrencyTest extends TestCase
 
     public function testOutputIsFloat()
     {
-        $this->currency->method('convert')
-        ->with(30, 'DKK', 'EUR')
+        $this->currency->convert(30, 'DKK', 'EUR')
         ->willReturn(4.03);
 
         $output = $this->currency->convert(30);
@@ -78,8 +75,7 @@ class CurrencyTest extends TestCase
     */
     public function testOutputFloatHasTwoDecimals($expected, $bool)
     {
-        $this->currency->method('convert')
-        ->with(30, 'DKK', 'EUR')
+        $this->currency->convert(30, 'DKK', 'EUR')
         ->willReturn($expected);
         
         $output = $this->currency->convert(30, 'DKK', 'EUR');

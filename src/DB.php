@@ -24,7 +24,7 @@ class DB
         } catch (\PDOException $e) {
             echo 'Connection unsuccessful';
             die('Connection unsuccessful: ' . $e->getMessage());
-            exit();
+            // exit(); (not needed since we already use die above)
         }
     }
 
