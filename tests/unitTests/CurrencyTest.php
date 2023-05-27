@@ -1,5 +1,5 @@
 <?php
-require_once 'currencyStub.php';
+require_once '/currencyStub.php';
 
 use PHPUnit\Framework\TestCase;
 
