@@ -38,16 +38,16 @@ class CurrencyTest extends TestCase
         return [
             [
                 $amount = 30,
+                $expected = 4.03,
                 $from = 'DKK',
                 $to = 'EUR',
-                $expected = 4.03,
                 $testMessage = 'to and from default input provided'
             ],
             [
                 $amount = 30,
+                $expected = 4.03,
                 $from,
                 $to,
-                $expected = 4.03,
                 $testMessage = 'to and from currency uses default input'
             ],
         ];
