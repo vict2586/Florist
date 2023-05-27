@@ -1,18 +1,35 @@
 <?php
-
-//change file name
-
 require_once __DIR__. '/../../src/currency.php';
+
+use PHPUnit\Framework\MockObject\Stub;
+
+class CurrencyStub extends Currency
+{
+    public function convert(float $amount, string $baseCurrency = 'DKK', string $destinationCurrency = 'EUR'): float
+    {
+        $rateDKKtoEUR = 0.13;
+        $rateEURtoDKK = 7.45;
+        $result = 0;
+
+        if ($baseCurrency == 'DKK' && $destinationCurrency == 'EUR') {
+            $result = round($amount * $rateDKKtoEUR, 2);
+        } elseif ($baseCurrency == 'EUR' && $destinationCurrency == 'DKK') {
+            $result = round($amount * $rateEURtoDKK, 2);
+        } 
+
+        return $result;
+    }
+}
 
 use PHPUnit\Framework\TestCase;
 
 class CurrencyTest extends TestCase
 {
-    private Currency $currency;
-
+    private $currency;
+    
     protected function setUp(): void
     {
-        $this->currency = $this->createStub(Currency::class);
+        $this->currency = $this->getMockBuilder(Currency::class)->getMock();
     }
 
     public function tearDown(): void
@@ -20,16 +37,32 @@ class CurrencyTest extends TestCase
         unset($this->currency);
     }
 
+    public function testOutputIsFloat()
+    {
+        $this->currency->expects($this->any())
+        ->method('convert')
+        ->willReturnCallback(function ($amount, $baseCurrency, $destinationCurrency) {
+            $stub = new CurrencyStub();
+            return $stub->convert($amount, $baseCurrency, $destinationCurrency);
+        });
+
+        $output = $this->currency->convert(30);
+        $this->assertIsFloat($output, 'Assert that output is a float');
+    }
+    
     /**
     * @dataProvider currencyQueries
     */
-    public function testCurrencyInputsDefault($amount, $expected, $from = 'DKK', $to = 'EUR', $testMessage = 'test currency')
+    public function testCurrencyInputsDefault($amount, $expected, $baseCurrency = 'DKK', $destinationCurrency = 'EUR', $testMessage = 'test currency')
     {
-        $this->currency->method('convert')
-        ->with(30, 'DKK', 'EUR')
-        ->willReturn(4.03);
+        $this->currency->expects($this->any())
+        ->method('convert')
+        ->willReturnCallback(function ($amount, $baseCurrency, $destinationCurrency) {
+            $stub = new CurrencyStub();
+            return $stub->convert($amount, $baseCurrency, $destinationCurrency);
+        });
 
-        $result = $this->currency->convert($amount, $from, $to);
+        $result = $this->currency->convert($amount, $baseCurrency, $destinationCurrency);
         $this->assertEquals($expected, $result, $testMessage);
     }
 
@@ -38,16 +71,16 @@ class CurrencyTest extends TestCase
         return [
             [
                 $amount = 30,
-                $expected = 4.03,
-                $from = 'DKK',
-                $to = 'EUR',
+                $expected = 3.9,
+                $baseCurrency = 'DKK',
+                $destinationCurrency = 'EUR',
                 $testMessage = 'to and from default input provided'
             ],
             [
                 $amount = 30,
-                $expected = 4.03,
-                $from,
-                $to,
+                $expected = 3.9,
+                $baseCurrency,
+                $destinationCurrency,
                 $testMessage = 'to and from currency uses default input'
             ],
         ];
@@ -55,22 +88,15 @@ class CurrencyTest extends TestCase
 
     public function testCurrencyInputsEURtoDKK()
     {
-        $this->currency->method('convert')
-        ->with(2, 'EUR', 'DKK')
-        ->willReturn(14.90);
+        $this->currency->expects($this->any())
+            ->method('convert')
+            ->willReturnCallback(function ($amount, $baseCurrency, $destinationCurrency) {
+                $stub = new CurrencyStub();
+                return $stub->convert($amount, $baseCurrency, $destinationCurrency);
+        });
 
         $result = $this->currency->convert(2, 'EUR', 'DKK');
         $this->assertEquals(14.90, $result, "Assert that convert also works with other currencies");
-    }
-
-    public function testOutputIsFloat()
-    {
-        $this->currency->method('convert')
-        ->with(30, 'DKK', 'EUR')
-        ->willReturn(4.03);
-
-        $output = $this->currency->convert(30);
-        $this->assertIsFloat($output, 'Assert that output is a float');
     }
 
     /**
@@ -78,13 +104,8 @@ class CurrencyTest extends TestCase
     */
     public function testOutputFloatHasTwoDecimals($expected, $bool)
     {
-        $this->currency->method('convert')
-        ->with(30, 'DKK', 'EUR')
-        ->willReturn($expected);
-        
-        $output = $this->currency->convert(30, 'DKK', 'EUR');
-        $result = preg_match('/^\d+\.\d{2}$/', $output) === 1;
-        $this->assertEquals($bool, $result);
+        $output = preg_match('/^\d+\.\d{2}$/', $expected) === 1;
+        $this->assertEquals($bool, $output);
     }
 
     public function currencyOutputsForDecimalTest()

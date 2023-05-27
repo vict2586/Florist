@@ -14,7 +14,7 @@
         "beautify": "vendor/bin/phpcbf src/ classes/ tests/",
         "test_w_coverage": "vendor/bin/phpunit --colors=always tests --coverage-html coverage --coverage-filter src/",
         "selenium": "node tests/selenium/tests.js",
-        "phpstan": "vendor/bin/phpstan analyse src tests classes index.php inventory.php aboutus.php info --level 1",
+        "phpstan": "vendor/bin/phpstan analyse src tests classes index.php inventory.php aboutus.php info --level 3",
         "phpstan_strict": "vendor/bin/phpstan analyse src tests classes index.php inventory.php aboutus.php info --level 9"
     }
 }
