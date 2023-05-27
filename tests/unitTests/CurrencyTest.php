@@ -1,25 +1,5 @@
 <?php
-require_once __DIR__. '/../../src/currency.php';
-
-use PHPUnit\Framework\MockObject\Stub;
-
-class CurrencyStub extends Currency
-{
-    public function convert(float $amount, string $baseCurrency = 'DKK', string $destinationCurrency = 'EUR'): float
-    {
-        $rateDKKtoEUR = 0.13;
-        $rateEURtoDKK = 7.45;
-        $result = 0;
-
-        if ($baseCurrency == 'DKK' && $destinationCurrency == 'EUR') {
-            $result = round($amount * $rateDKKtoEUR, 2);
-        } elseif ($baseCurrency == 'EUR' && $destinationCurrency == 'DKK') {
-            $result = round($amount * $rateEURtoDKK, 2);
-        } 
-
-        return $result;
-    }
-}
+require_once __DIR__. '/currencyStub.php';
 
 use PHPUnit\Framework\TestCase;
 
@@ -93,7 +73,7 @@ class CurrencyTest extends TestCase
             ->willReturnCallback(function ($amount, $baseCurrency, $destinationCurrency) {
                 $stub = new CurrencyStub();
                 return $stub->convert($amount, $baseCurrency, $destinationCurrency);
-        });
+            });
 
         $result = $this->currency->convert(2, 'EUR', 'DKK');
         $this->assertEquals(14.90, $result, "Assert that convert also works with other currencies");
