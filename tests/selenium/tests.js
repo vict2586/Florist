@@ -1,5 +1,5 @@
-const pageUnderTest = 'http://localhost/florist/index.php';
-// const pageUnderTest = 'http://localhost/_Testing_Exam/florist/index.php';
+// const pageUnderTest = 'http://localhost/florist/index.php';
+const pageUnderTest = 'http://localhost/_Testing_Exam/florist/index.php';
 const {By, Builder} = require('selenium-webdriver');
 const assert = require('assert');
 require('geckodriver');
