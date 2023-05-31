@@ -6,24 +6,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Create test database
-      run: |
-        sudo /etc/init.d/mysql start
-        mysql -uroot -proot -hlocalhost < ./db/florist.sql
+      - name: Create test database
+        run: |
+          sudo /etc/init.d/mysql start
+          mysql -uroot -proot -hlocalhost < ./db/florist.sql
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate --strict
+      - name: Validate composer.json and composer.lock
+        run: composer validate --strict
 
-    - name: Install PHP dependencies
-      run: composer install --prefer-dist --no-progress
+      - name: Install PHP dependencies
+        run: composer install --prefer-dist --no-progress
 
-    - name: Run linting with PHPcodesniffer
-      run: composer run-script lint
+      - name: Run linting with PHPcodesniffer
+        run: composer run-script lint
 
-    - name: Scan for bugs and logical erros with PHPStan
+      - name: Scan for bugs and logical erros with PHPStan
         run: composer run-script phpstan
 
-    - name: Run PHPUnit tests
-      run: composer run-script test
+      - name: Run PHPUnit tests
+        run: composer run-script test
